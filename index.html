@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Города</title>
+    <link rel="stylesheet" href="static/main.css">
+    <script type="text/javascript" src="static/main.js"></script>
+</head>
+
+<body>
+    <div class="main">
+        <h1>
+            Список посещенных городов:
+        </h1>
+        <form class="form">
+            <label for="city"><h2>Название города:</h2></label>
+            <input type="text" name="city" id="city">
+
+            <label for="visit_date"><h3>Дата посещения:</h3></label>
+            <input type="date" name="visit_date" id="visit_date">
+            <button onclick="addCity()">
+                Добавить
+            </button>
+        </form>
+        <div class="frame">
+            <h2>Города:</h2>
+            <button onclick="clearList()">Очистить ленту</button>
+        <ul>
+            {%for city in cities_list%}
+            <li>
+                <h2>
+                    Город: {{city['city']}}
+                </h2>
+                <h3>
+                    Дата посещения: {{city['visit_date']}}
+                </h3>
+                <input value="{{city['id']}}" onchange="updateStatus(this)" name="liked" type="checkbox" {%if
+                    city.liked%} checked {%endif%}>
+                <label for="liked">Посетить ещё раз</label>
+            </li>
+            {%endfor%}
+        </ul>
+        </div>
+    </div>
+</body>
+
+</html>
